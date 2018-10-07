@@ -15,7 +15,7 @@ class Map extends Component {
 
   /*control elements on the map*/
   initMap () {
-    let sydney = {lat: -32.826687, lng: 146.632891}
+    let sydney = {lat: -27.470125, lng: 153.021072}
     const map = new window.google.maps.Map(document.getElementById('map'), {zoom: 4, center: sydney})
     let marker = new window.google.maps.Marker({position: sydney, map: map});
   }
