@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import MyMap from './mymap'
+import Search from './search'
 
 
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
           id: '',
           name: '',
           address: '',
+          city:'',
           postalCode: '',
           state: '',
           country: '',
@@ -46,6 +48,7 @@ class App extends Component {
       marker.id = cinema.venue.id
       marker.name = cinema.venue.name
       marker.address = cinema.venue.location.address
+      marker.city = cinema.venue.location.city
       marker.postalCode = cinema.venue.location.postalCode
       marker.state = cinema.venue.location.state
       marker.country = cinema.venue.location.country
@@ -61,6 +64,7 @@ class App extends Component {
     return (
       <div className="main">
         <h1>Hello Cinema</h1>
+        <Search />
         <MyMap allMarkers={this.state.allMarkers}/>
       </div>
     )

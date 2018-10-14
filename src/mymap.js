@@ -49,14 +49,14 @@ class MyMap extends Component {
           {this.props.allMarkers.map(cinema =>
             <Marker
               key={cinema.id} name={cinema.name} position={cinema.location}
-              address={cinema.address} postalCode={cinema.postalCode} state={cinema.state} country={cinema.country}
+              address={cinema.address} city={cinema.city} postalCode={cinema.postalCode} state={cinema.state} country={cinema.country}
               onClick={this.onMarkerClick}/>
           )}
 
         <InfoWindow marker={this.state.activeMarker} onClose={this.onInfoWindowClose} visible={this.state.showingInfoWindow}>
           <div>
             <h1>{this.state.selectedPlace.name}</h1>
-            <p>{this.state.selectedPlace.address}, {this.state.selectedPlace.postalCode}, {this.state.selectedPlace.state}, {this.state.selectedPlace.country}</p>
+            <p>{this.state.selectedPlace.address}, {this.state.selectedPlace.city}, {this.state.selectedPlace.postalCode}, {this.state.selectedPlace.state}, {this.state.selectedPlace.country}</p>
           </div>
         </InfoWindow>
 
