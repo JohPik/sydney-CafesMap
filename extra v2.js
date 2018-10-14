@@ -1,118 +1,92 @@
-/* WANT TO DO*/
+/* WORKING CODE*/
 
 import React, { Component } from 'react'
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
-class Map extends Component {
 
-  /* manage async callback from googAPI*/
-  componentDidMount(){
-    this.renderMap()
+class MyMap extends Component {
+
+  state = {
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
+  };
+
+  // onMarkerClick = (props, marker, e) =>
+  //   this.setState({
+  //     selectedPlace: props,
+  //     activeMarker: marker,
+  //     showingInfoWindow: true
+  //   });
+
+  onMarkerClick(){
+      console.log("mofo");
   }
 
-  /* render the map*/
-  renderMap(){
-    loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyCuGxStq3mHtzeuhtOS0wRxgg5mYeP04RM&callback=initMap')
-    window.initMap = this.initMap
-  }
 
-  /*control elements on the map*/
-  // initMap () {
-  //   let sydney = {lat: -27.470125, lng: 153.021072}
-  //   const map = new window.google.maps.Map(document.getElementById('map'), {zoom: 4, center: sydney})
-  //   let marker = new window.google.maps.Marker({position: sydney, map: map})
-  //   console.log("map is rendered")
-  // }
 
-  /* From GOOGLE MAP */
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
 
- map = ""
- markers = []
- hello = "hello Mother fucker"
-
-initMap() {
-  var haightAshbury = {lat: 37.769, lng: -122.446}
-
-  this.map = new window.google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: haightAshbury,
-    mapTypeId: 'terrain'
-  })
-
-  // This event listener will call addMarker() when the map is clicked.
-  this.map.addListener('click', function(event) {
-    this.addMarker(event.latLng)
-  })
-
-  console.log("mother Fucker", this.hello)
-  console.log(this);
-
-  // Adds a marker at the center of the map.
-  //this.addMarker(haightAshbury)
-}
-
-// Adds a marker to the map and push to the array.
-// addMarker = (location) => {
-//   var marker = new window.google.maps.Marker({
-//     position: location,
-//     map: this.map //NOT SURE
-//   })
-//   this.markers.push(marker)
-// }
-addMarker(x){
-  console.log("Hello:", x);
-}
-
-// Sets the map on all markers in the array.
-setMapOnAll(map) {
-  for (var i = 0; i < this.markers.length; i++) {
-    this.markers[i].setMap(map)
-  }
-}
-
-// Removes the markers from the map, but keeps them in the array.
-clearMarkers() {
-  this.setMapOnAll(null)
-}
-
-// Shows any markers currently in the array.
-showMarkers() {
-  this.setMapOnAll(this.map)
-}
-
-// Deletes all markers in the array by removing references to them.
-deleteMarkers() {
-  this.clearMarkers()
-  this.markers = []
-}
 
   render() {
-    console.log(this.props)
+    console.log(this.props);
     return(
       <div className="map-section">
         <h2>map Section</h2>
+        <Map google={this.props.google}
+        initialCenter={{lat: -27.470125, lng: 153.021072}}
+        zoom={12}
+        >
 
-          <div id="floating-panel">
-            <button onClick={this.clearMarkers}>Hide Markers</button>
-            <button onClick={this.showMarkers}>Show All Markers</button>
-            <button onClick={this.deleteMarkers}>Delete Markers</button>
+        {this.props.allMarkers.map(cinema =>
+          <Marker key={cinema.id}  name={cinema.name}
+            position={cinema.location}
+            onClick={this.onMarkerClick}
+          />
+        )}
 
-          </div>
-        <div id="map"></div>
+        <InfoWindow onClose={this.onInfoWindowClose} >
+          <div>
+              <h1>hello</h1>
+              <h2>lol</h2>
+            </div>
+        </InfoWindow>
+
+        {/*
+        {this.props.allMarkers.map(cinema =>
+          <InfoWindow onClose={this.onInfoWindowClose} key={cinema.index}>
+            <div>
+                <h1>{cinema.name}</h1>
+                <h2>{cinema.location}</h2>
+              </div>
+          </InfoWindow>
+        )}
+        */}
+
+        {/*
+        <Marker onClick={this.onMarkerClick}
+                name={'Current location'} />
+
+        <InfoWindow onClose={this.onInfoWindowClose}>
+          <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+        </InfoWindow>*/}
+
+      </Map>
       </div>
     )
   }
+
 }
 
-/* The following function insert the GoogleMap script Tag in the DOM*/
-const loadScript = url => {
-  let index = window.document.getElementsByTagName("script")[0]
-  let script = window.document.createElement("script")
-  script.src = url
-  script.async = true
-  script.defer = true
-  index.parentNode.insertBefore(script, index)
-  console.log("map is called")
-}
-
-
-export default Map
+export default GoogleApiWrapper({
+  apiKey: ("AIzaSyDS0pzpMW_qNo6xMb8d0I69zukaOsC0Lx0")
+})(MyMap)

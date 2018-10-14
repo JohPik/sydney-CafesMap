@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   fourSquare (){
-    fetch('https://api.foursquare.com/v2/venues/explore?client_id=FBFR4MRSN5YJ34CQKWAN0RWG55X41LX0ILOLM5JW52T0ZMKP&client_secret=2NPKFK05BW3WOBENMIWPRPFKQEDBWLNGXX1ANW5YUFQ1QHLD&v=20180323&limit=30&near=brisbane&radius=1000&query=cinemas')
+    fetch('https://api.foursquare.com/v2/venues/explore?client_id=FBFR4MRSN5YJ34CQKWAN0RWG55X41LX0ILOLM5JW52T0ZMKP&client_secret=2NPKFK05BW3WOBENMIWPRPFKQEDBWLNGXX1ANW5YUFQ1QHLD&v=20180323&limit=15&near=brisbane&radius=500&query=cinemas')
       .then(places=> places.json())
       .then(parsedJSON => {
         //Get allCinemas
@@ -34,6 +34,10 @@ class App extends Component {
         let marker = {
           id: '',
           name: '',
+          address: '',
+          postalCode: '',
+          state: '',
+          country: '',
           location: {
             lat: 0,
             lng: 0
@@ -41,6 +45,10 @@ class App extends Component {
         }
       marker.id = cinema.venue.id
       marker.name = cinema.venue.name
+      marker.address = cinema.venue.location.address
+      marker.postalCode = cinema.venue.location.postalCode
+      marker.state = cinema.venue.location.state
+      marker.country = cinema.venue.location.country
       marker.location.lat = cinema.venue.location.lat
       marker.location.lng = cinema.venue.location.lng
       return allMarkers.push(marker)
@@ -49,6 +57,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("raw data", this.state.allCinemas);
     return (
       <div className="main">
         <h1>Hello Cinema</h1>

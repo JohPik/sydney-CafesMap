@@ -1,3 +1,4 @@
+/* INFO Window Works Bugged*/
 import React, { Component } from 'react'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
@@ -9,14 +10,12 @@ class MyMap extends Component {
     showingInfoWindow: false
   };
 
-  onMarkerClick = (props, marker) =>{
-    console.log("marker", marker)
-    console.log("props", props)
+  onMarkerClick = (props, marker) =>
     this.setState({
       activeMarker: marker,
       selectedPlace: props,
       showingInfoWindow: true
-    })}
+    });
 
   onInfoWindowClose = () =>
     this.setState({
@@ -36,30 +35,40 @@ class MyMap extends Component {
     if (!this.props.loaded) return <div>Loading...</div>;
 
     return (
-
       <Map
         className="map"
         google={this.props.google}
         onClick={this.onMapClicked}
         style={{ height: '100%', position: 'relative', width: '100%' }}
-        initialCenter={{lat: -27.470125, lng: 153.021072}}
-        zoom={13}>
+        zoom={14}>
+        <Marker
+          name="SOMA"
+          onClick={this.onMarkerClick}
+          position={{ lat: 37.778519, lng: -122.40564 }}
+        />
 
+        <Marker
+          name="Dolores park"
+          onClick={this.onMarkerClick}
+          position={{ lat: 37.759703, lng: -122.428093 }}
+        />
 
-          {this.props.allMarkers.map(cinema =>
-            <Marker
-              key={cinema.id} name={cinema.name} position={cinema.location}
-              address={cinema.address} postalCode={cinema.postalCode} state={cinema.state} country={cinema.country}
-              onClick={this.onMarkerClick}/>
-          )}
+        <Marker name="Current location" onClick={this.onMarkerClick} />
 
-        <InfoWindow marker={this.state.activeMarker} onClose={this.onInfoWindowClose} visible={this.state.showingInfoWindow}>
+        <InfoWindow
+          marker={this.state.activeMarker}
+          onClose={this.onInfoWindowClose}
+          visible={this.state.showingInfoWindow}>
           <div>
             <h1>{this.state.selectedPlace.name}</h1>
-            <p>{this.state.selectedPlace.address}, {this.state.selectedPlace.postalCode}, {this.state.selectedPlace.state}, {this.state.selectedPlace.country}</p>
           </div>
         </InfoWindow>
 
+        <InfoWindow position={{ lat: 37.765703, lng: -122.42564 }} visible>
+          <small>
+            Click on any of the markers to display an additional info.
+          </small>
+        </InfoWindow>
       </Map>
     );
   }
