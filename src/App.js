@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import './App.css'
 import MyMap from './mymap'
-import Search from './search'
 
 
 class App extends Component {
 
   state = {
-    allCinemas: [],
-    allMarkers: []
+    allCinemas: [], //Store the Raw Data coming from fourSquare
+    allMarkers: [] //Store the Markers Data
   }
 
   // Call fourSquare API to get the raw data about my cinemas
@@ -17,7 +16,7 @@ class App extends Component {
   }
 
   fourSquare (){
-    fetch('https://api.foursquare.com/v2/venues/explore?client_id=FBFR4MRSN5YJ34CQKWAN0RWG55X41LX0ILOLM5JW52T0ZMKP&client_secret=2NPKFK05BW3WOBENMIWPRPFKQEDBWLNGXX1ANW5YUFQ1QHLD&v=20180323&limit=15&near=brisbane&radius=500&query=cinemas')
+    fetch('https://api.foursquare.com/v2/venues/explore?client_id=FBFR4MRSN5YJ34CQKWAN0RWG55X41LX0ILOLM5JW52T0ZMKP&client_secret=2NPKFK05BW3WOBENMIWPRPFKQEDBWLNGXX1ANW5YUFQ1QHLD&v=20180323&limit=200&near=brisbane&radius=1500&query=Café')
       .then(places=> places.json())
       .then(parsedJSON => {
         //Get allCinemas
@@ -60,11 +59,11 @@ class App extends Component {
   }
 
   render() {
-    console.log("raw data", this.state.allCinemas);
     return (
       <div className="main">
-        <h1>Hello Cinema</h1>
-        <Search />
+        <div className="Heading">
+          <h1>Hello Cinema</h1>
+        </div>
         <MyMap allMarkers={this.state.allMarkers}/>
       </div>
     )
