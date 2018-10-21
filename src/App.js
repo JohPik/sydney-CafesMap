@@ -6,31 +6,31 @@ import MyMap from './mymap'
 class App extends Component {
 
   state = {
-    allCinemas: [], //Store the Raw Data coming from fourSquare
+    allCafes: [], //Store the Raw Data coming from fourSquare
     allMarkers: [] //Store the Markers Data
   }
 
-  // Call fourSquare API to get the raw data about my cinemas
+  // Call fourSquare API to get the raw data about my cafes
   componentDidMount(){
       this.fourSquare()
   }
 
   fourSquare (){
-    fetch('https://api.foursquare.com/v2/venues/explore?client_id=FBFR4MRSN5YJ34CQKWAN0RWG55X41LX0ILOLM5JW52T0ZMKP&client_secret=2NPKFK05BW3WOBENMIWPRPFKQEDBWLNGXX1ANW5YUFQ1QHLD&v=20180323&limit=200&near=brisbane&radius=1500&query=Café')
+    fetch('https://api.foursquare.com/v2/venues/explore?client_id=FBFR4MRSN5YJ34CQKWAN0RWG55X41LX0ILOLM5JW52T0ZMKP&client_secret=2NPKFK05BW3WOBENMIWPRPFKQEDBWLNGXX1ANW5YUFQ1QHLD&v=20180323&limit=200&near=sydney&radius=1500&query=Café')
       .then(places=> places.json())
       .then(parsedJSON => {
-        //Get allCinemas
-        this.setState({ allCinemas: parsedJSON.response.groups[0].items })
+        //Get allCafes
+        this.setState({ allCafes: parsedJSON.response.groups[0].items })
         //Get allMarkers
-        this.createMarkers(this.state.allCinemas)
+        this.createMarkers(this.state.allCafes)
       })
       .catch(error => console.log("oops"))
   }
 
   //Create Markers
-  createMarkers(cinemas){
+  createMarkers(cafes){
     let allMarkers = []
-      cinemas.map( cinema => {
+      cafes.map( cafe => {
         let marker = {
           id: '',
           name: '',
@@ -44,15 +44,15 @@ class App extends Component {
             lng: 0
           }
         }
-      marker.id = cinema.venue.id
-      marker.name = cinema.venue.name
-      marker.address = cinema.venue.location.address
-      marker.city = cinema.venue.location.city
-      marker.postalCode = cinema.venue.location.postalCode
-      marker.state = cinema.venue.location.state
-      marker.country = cinema.venue.location.country
-      marker.location.lat = cinema.venue.location.lat
-      marker.location.lng = cinema.venue.location.lng
+      marker.id = cafe.venue.id
+      marker.name = cafe.venue.name
+      marker.address = cafe.venue.location.address
+      marker.city = cafe.venue.location.city
+      marker.postalCode = cafe.venue.location.postalCode
+      marker.state = cafe.venue.location.state
+      marker.country = cafe.venue.location.country
+      marker.location.lat = cafe.venue.location.lat
+      marker.location.lng = cafe.venue.location.lng
       return allMarkers.push(marker)
     })
     this.setState({ allMarkers })
@@ -61,8 +61,8 @@ class App extends Component {
   render() {
     return (
       <div className="main">
-        <div className="Heading">
-          <h1>Hello Cinema</h1>
+        <div className="heading">
+          <h1>Hello Cafés</h1>
         </div>
         <MyMap allMarkers={this.state.allMarkers}/>
       </div>

@@ -60,12 +60,33 @@ class MyMap extends Component {
         {/* Renders the Input Field*/}
         <div className="search">
           <input
-            className="search-cinamas"
+            className="search-cinemas"
             type="text"
-            placeholder="Search your Cinema"
+            placeholder="Search for your favorite Café"
             value={this.state.query}
             onChange={(e) => this.updateQuery(e.target.value)}
               />
+
+          <div className="search-result">
+            { showMarker.length > 1 ?
+
+              <ul className="search-list">
+                {showMarker.map(cafe =>
+                  <li key={cafe.id}>
+                    <p className="cafe-name" onClick={this.onMarkerClick}>{cafe.name}</p>
+                    <p className="cafe-address">{cafe.address}, {cafe.postalCode}, {cafe.state},<br/> {cafe.city}, {cafe.country}</p>
+                </li>
+                )}
+              </ul>
+
+              :
+
+              <p>Ooops Nothing march your search</p>
+            }
+
+
+            </div>
+
         </div>
 
       {/* Renders the Map, the Markers, and the info Windows*/}
@@ -73,16 +94,16 @@ class MyMap extends Component {
         className="map"
         google={this.props.google}
         onClick={this.onMapClicked}
-        style={{ height: '100%', position: 'relative', width: '100%' }}
-        initialCenter={{lat: -27.470125, lng: 153.021072}}
+        style={{ height: '100%', position: 'static', width: '100%' }}
+        initialCenter={{lat: -33.8688, lng: 151.2093}}
         zoom={16}
         >
 
         {/* Renders the Markers, by maping though showMarker*/}
-        {showMarker.map(cinema =>
+        {showMarker.map(cafe =>
           <Marker
-            key={cinema.id} name={cinema.name} position={cinema.location}
-            address={cinema.address} city={cinema.city} postalCode={cinema.postalCode} state={cinema.state} country={cinema.country}
+            key={cafe.id} name={cafe.name} position={cafe.location}
+            address={cafe.address} city={cafe.city} postalCode={cafe.postalCode} state={cafe.state} country={cafe.country}
             onClick={this.onMarkerClick}/>
         )}
 
