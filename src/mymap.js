@@ -14,6 +14,7 @@ class MyMap extends Component {
 
   /*** Manage Markers when clicked***/
   onMarkerClick = (props, marker) => {
+    console.log("onMarkerClick", this);
     this.setState({
       activeMarker: marker,
       selectedPlace: props,
@@ -54,6 +55,8 @@ class MyMap extends Component {
       }
 
 
+      console.log("the props", this.props);
+
     return (
       <div className="mainContent">
 
@@ -62,10 +65,11 @@ class MyMap extends Component {
           <input
             className="search-cinemas"
             type="text"
-            placeholder="Search for your favorite Café"
+            placeholder="Search your Café"
             value={this.state.query}
             onChange={(e) => this.updateQuery(e.target.value)}
               />
+            {/*<span className="cafes-numbers">{this.props.allCafes.length}</span>*/}
 
           <div className="search-result">
             { showMarker.length > 1 ?
@@ -81,9 +85,12 @@ class MyMap extends Component {
 
               :
 
-              <p>Ooops Nothing march your search</p>
-            }
+              this.props.allCafes.length > 1 ?
+                <p className="no-match">Ooops, nothing matches your search, please look for another venue</p>
+                :
+                <p className="loading-cafes">Page is Loading Please Wait</p>
 
+            }
 
             </div>
 

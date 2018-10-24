@@ -64,7 +64,7 @@ class App extends Component {
         <div className="heading">
           <h1>Hello Cafés</h1>
         </div>
-        <MyMap allMarkers={this.state.allMarkers}/>
+        <MyMap allCafes={this.state.allCafes} allMarkers={this.state.allMarkers}/>
       </div>
     )
   }
