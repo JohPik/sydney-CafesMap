@@ -14,7 +14,7 @@ class MyMap extends Component {
 
   /*** Manage Markers when clicked***/
   onMarkerClick = (props, marker) => {
-    console.log("onMarkerClick", this);
+    //console.log("onMarkerClick", this);
     this.setState({
       activeMarker: marker,
       selectedPlace: props,
@@ -42,6 +42,10 @@ class MyMap extends Component {
 
   myFunction(x){
     console.log(x);
+    // something needs to map through all the allMarkers
+    // then need to match the ID of the Search with the Markers
+    // finaly marker.onMarkerClick
+
   }
 
   render() {
@@ -58,7 +62,8 @@ class MyMap extends Component {
         showMarker = this.props.allMarkers
       }
 
-      // console.log("the props", this.props);
+      console.log("the props", this.props);
+      console.log("the state", this.state);
 
     return (
       <div className="mainContent">
@@ -80,7 +85,7 @@ class MyMap extends Component {
               <ul className="search-list">
                 {showMarker.map(cafe =>
                   <li key={cafe.id}>
-                    <a className="cafe-name" href="#" onClick={() => this.myFunction(cafe.id)}>{cafe.name}</a>
+                    <a className="cafe-name" onClick={() => this.myFunction(cafe.id)}>{cafe.name}</a>
                     <p className="cafe-address">{cafe.address}, {cafe.postalCode}, {cafe.state},<br/> {cafe.city}, {cafe.country}</p>
                 </li>
                 )}
@@ -112,7 +117,8 @@ class MyMap extends Component {
         {/* Renders the Markers, by maping though showMarker*/}
         {showMarker.map(cafe =>
           <Marker
-            key={cafe.id} name={cafe.name} position={cafe.location}
+            animation={this.props.google.maps.Animation.DROP}
+            key={cafe.id} id={cafe.id} name={cafe.name} position={cafe.location}
             address={cafe.address} city={cafe.city} postalCode={cafe.postalCode} state={cafe.state} country={cafe.country}
             onClick={this.onMarkerClick}/>
         )}
