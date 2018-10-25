@@ -40,6 +40,10 @@ class MyMap extends Component {
     this.setState({query: query.trim()})
   }
 
+  myFunction(x){
+    console.log(x);
+  }
+
   render() {
     //Default Message While Loading
     if (!this.props.loaded) return <div>Loading...</div>
@@ -53,7 +57,6 @@ class MyMap extends Component {
       } else {
         showMarker = this.props.allMarkers
       }
-
 
       // console.log("the props", this.props);
 
@@ -69,7 +72,7 @@ class MyMap extends Component {
             value={this.state.query}
             onChange={(e) => this.updateQuery(e.target.value)}
               />
-            {/*<span className="cafes-numbers">{this.props.allCafes.length}</span>*/}
+            {/*<p>We found <span className="cafes-numbers">{this.props.allCafes.length}</span> matching you search</p>*/}
 
           <div className="search-result">
             { showMarker.length > 0 ?
@@ -77,7 +80,7 @@ class MyMap extends Component {
               <ul className="search-list">
                 {showMarker.map(cafe =>
                   <li key={cafe.id}>
-                    <p className="cafe-name" onClick={this.onMarkerClick}>{cafe.name}</p>
+                    <a className="cafe-name" href="#" onClick={() => this.myFunction(cafe.id)}>{cafe.name}</a>
                     <p className="cafe-address">{cafe.address}, {cafe.postalCode}, {cafe.state},<br/> {cafe.city}, {cafe.country}</p>
                 </li>
                 )}
