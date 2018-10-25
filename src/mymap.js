@@ -55,7 +55,7 @@ class MyMap extends Component {
       }
 
 
-      console.log("the props", this.props);
+      // console.log("the props", this.props);
 
     return (
       <div className="mainContent">
@@ -72,7 +72,7 @@ class MyMap extends Component {
             {/*<span className="cafes-numbers">{this.props.allCafes.length}</span>*/}
 
           <div className="search-result">
-            { showMarker.length > 1 ?
+            { showMarker.length > 0 ?
 
               <ul className="search-list">
                 {showMarker.map(cafe =>
