@@ -11,15 +11,25 @@ class MyMap extends Component {
     query: "" //query of the Search
   }
 
+  markerObjects = [] //Array of Marker Objects
+
+ //Populate the array of markers
+    onMarkerMounted = (element) => {
+      //Markers are added to markerObjects until its length == 100
+      if (this.markerObjects.length !== this.props.allCafes.length) {
+        this.markerObjects.push(element.marker)
+      }
+    }
 
   /*** Manage Markers when clicked***/
   onMarkerClick = (props, marker) => {
-    //console.log("onMarkerClick", this);
+
     this.setState({
       activeMarker: marker,
       selectedPlace: props,
       showingInfoWindow: true
-    })}
+    })
+  }
 
   onInfoWindowClose = () =>
     this.setState({
@@ -35,20 +45,22 @@ class MyMap extends Component {
       })
   }
 
- // When Input Cahnges the query changes too
+ // When Input Changes the query changes too
   updateQuery(query){
     this.setState({query: query.trim()})
   }
 
-  myFunction(x){
-    console.log(x);
-    // something needs to map through all the allMarkers
-    // then need to match the ID of the Search with the Markers
-    // finaly marker.onMarkerClick
-
+// Open InfoWindow when a link is cliked form the list
+  openInfoWindow(link){
+    this.markerObjects.map( marker => {
+      if (marker.id === link) {
+        window.google.maps.event.trigger(marker, 'click');
+      }
+    })
   }
 
   render() {
+    console.log(this.props);
     //Default Message While Loading
     if (!this.props.loaded) return <div>Loading...</div>
 
@@ -61,9 +73,6 @@ class MyMap extends Component {
       } else {
         showMarker = this.props.allMarkers
       }
-
-      console.log("the props", this.props);
-      console.log("the state", this.state);
 
     return (
       <div className="mainContent">
@@ -85,7 +94,7 @@ class MyMap extends Component {
               <ul className="search-list">
                 {showMarker.map(cafe =>
                   <li key={cafe.id}>
-                    <a className="cafe-name" onClick={() => this.myFunction(cafe.id)}>{cafe.name}</a>
+                    <a className="cafe-name" onClick={() =>  this.openInfoWindow(cafe.id)}>{cafe.name}</a>
                     <p className="cafe-address">{cafe.address}, {cafe.postalCode}, {cafe.state},<br/> {cafe.city}, {cafe.country}</p>
                 </li>
                 )}
@@ -114,9 +123,11 @@ class MyMap extends Component {
         zoom={16}
         >
 
+
         {/* Renders the Markers, by maping though showMarker*/}
         {showMarker.map(cafe =>
           <Marker
+            ref={this.onMarkerMounted}
             animation={this.props.google.maps.Animation.DROP}
             key={cafe.id} id={cafe.id} name={cafe.name} position={cafe.location}
             address={cafe.address} city={cafe.city} postalCode={cafe.postalCode} state={cafe.state} country={cafe.country}
@@ -130,7 +141,6 @@ class MyMap extends Component {
             <p>{this.state.selectedPlace.address}, {this.state.selectedPlace.city}, {this.state.selectedPlace.postalCode}, {this.state.selectedPlace.state}, {this.state.selectedPlace.country}</p>
           </div>
         </InfoWindow>
-
       </Map>
       </div>
     )
