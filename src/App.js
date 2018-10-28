@@ -62,10 +62,9 @@ class App extends Component {
     return (
       <div className="main">
         <div className="heading">
-          <h1>Hello<i className="fas fa-coffee"></i>Cafés</h1>
-
+          <h1 tabindex="1" role="heading" >Hello<i className="fas fa-coffee"></i>Cafés</h1>
         </div>
-        <MyMap allCafes={this.state.allCafes} allMarkers={this.state.allMarkers}/>
+        <MyMap aria-label="Sydney Cafes App Main Content" role="application" allCafes={this.state.allCafes} allMarkers={this.state.allMarkers}/>
       </div>
     )
   }

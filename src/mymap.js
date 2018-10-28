@@ -80,6 +80,8 @@ class MyMap extends Component {
         {/* Renders the Input Field*/}
         <div className="search">
           <input
+            type="text" aria-label="Search your Café"
+            aria-label="Cafes Filtering" role="heading" tabindex="0"
             className="search-cinemas"
             type="text"
             placeholder="Search your Café"
@@ -87,16 +89,18 @@ class MyMap extends Component {
             onChange={(e) => this.updateQuery(e.target.value)}
               />
             <i className="fas fa-search" aria-hidden="true"></i>
-            <p className="cafes-numbers">We found <span>{showMarker.length}</span> cafés</p>
+            <p role="status" aria-label="number of search result" tabindex="0" className="cafes-numbers">We found <span>{showMarker.length}</span> cafés</p>
 
 
             { showMarker.length > 0 ?
             <div className="search-result">
-                <ul className="search-list">
+                <ul className="search-list" role="list" aria-label="Filtered Café List" tabindex="0">
                   {showMarker.map(cafe =>
-                    <li key={cafe.id}>
-                      <a className="cafe-name" onClick={() =>  this.openInfoWindow(cafe.id)}>{cafe.name}</a>
-                      <p className="cafe-address">{cafe.address}, {cafe.postalCode}, {cafe.state},<br/> {cafe.city}, {cafe.country}</p>
+                    <li role="treeitem" aria-label={cafe.name} key={cafe.id}>
+                      <a role="link" aria-label={cafe.name} tabindex="0" className="cafe-name" onClick={() =>  this.openInfoWindow(cafe.id)}>{cafe.name}</a>
+                      <p className="cafe-address" role="document" aria-label="Restaurant Address" tabindex="0">
+                        {cafe.address}, {cafe.postalCode}, {cafe.state},<br/> {cafe.city}, {cafe.country}
+                      </p>
                   </li>
                   )}
                 </ul>
@@ -119,7 +123,7 @@ class MyMap extends Component {
         </div>
 
       {/* Renders the Map, the Markers, and the info Windows*/}
-      <Map
+      <Map aria-label="Cafes Reviews Map" role="application" tabindex="0"
         className="map"
         google={this.props.google}
         onClick={this.onMapClicked}
