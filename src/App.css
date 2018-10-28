@@ -33,7 +33,7 @@
 
 
 /* General */
-html, body {
+html, body, .main {
   font-family: Mali, cursive;
   height: 100%;
   margin: 0;
@@ -43,45 +43,74 @@ html, body {
 /* Heading */
 
 .heading {
-  background-color: #0367A6;
+  background-color: #060659;
   color: white;
   text-align: center;
-  height: 10vh;
+  height: 80px;
+  line-height: 80px;
+  border-bottom: solid white 2px;
 }
 
 .heading h1 {
   margin: 0;
   font-size: 200%;
-  padding-top: 2%;
+}
+
+.heading i{
+  color: #F22C63;
+  margin: 0 10px;
 }
 
 /* The mainContent */
 .mainContent {
   display: flex;
   flex-flow: row wrap;
-  background-color: red;
-  height: 90vh;
+  height: calc(100vh - 82px); /* need to change that */
   width: 100%;
 }
 
 /* The Search */
 .search{
   width: 30%;
+  height: 80px;
   background-color: #F27141;
+  position: relative;
 }
 
 .search input{
   width: 100%;
-  height: 12vh;
+  height: 80px;
+  line-height: 80px;
   border: 0;
-  padding: 5%;
+  padding-left: 40px;
   font-size: 100%;
   font-family: Mali, cursive;
+}
 
+.search i{
+  color: #F22C63;
+  position: absolute;
+  line-height: 80px;
+  padding-left: 10px;
+  top: 0;
+}
+
+.cafes-numbers {
+    position: absolute;
+    top: 65px;
+    margin: 0;
+    font-size: .6em;
+    right: 10px;
+}
+
+.cafes-numbers span{
+    font-weight: bold;
+    color: #F22C63;
 }
 
 /* The Map */
 .map {
+  margin-top: 2px;
   width: 70% !important;
   height: 100% !important;
   position: static !important;
@@ -90,12 +119,11 @@ html, body {
 /* The Search Result */
 .search-list {
   width: 100%;
-  /* max-height: 80vh; */
-  max-height: 78vh;
+  height: calc(100vh - 162px);
   overflow: auto;
   margin: 1em;
   color: white;
-  font-family: sans-serif;
+  font-family: Mali, cursive;
   font-size: 100%;
   list-style: none;
   margin: 0;
@@ -104,14 +132,16 @@ html, body {
 
 .search-list li {
   position: relative;
-  padding: 5%;
+  height: 80px;
+  padding: 10px 20px 10px 20px;
 }
 
 .search-list li:nth-child(2n) {
-  background: #0367A6;
+  background: #060659;
 }
 .search-list li:nth-child(2n + 1) {
-  background: #04C4D9;
+  background: #06F5F4;
+  color: #060659;
 }
 
 .search-list p {
@@ -119,7 +149,54 @@ html, body {
 }
 
 .cafe-name{
-
   font-weight: bold;
-  text-decoration: underline;
+  font-size: 1.1em;
+  color: #F22C63;
 }
+
+.search-failed{
+  background: #F22C63;
+  text-align: center;
+  height: calc(100vh - 162px);
+}
+
+.search-loads{
+  background: #060659;
+  text-align: center;
+  height: calc(100vh - 162px);
+}
+
+.no-match, .loading-cafes {
+  padding-top: calc(100vh - 162px - 100%);
+  margin: 0;
+  color: white;
+}
+
+ /*** Responive Design ***/
+ @media (max-width: 800px) {
+  .heading{
+    /* background-color: red; */
+  }
+  .search, .search-result{
+    width: 100%;
+  }
+  .search-result{
+    position: absolute;
+    bottom: calc(-100vh + 162px);
+  }
+  .search-list{
+    height: calc(57vh - 162px);
+  }
+  .search input{
+    width: calc(100% - 40px);
+  }
+  .map{
+    /* display: none; */
+      margin-top: 0;
+      width: 100% !important;
+      height: calc(60vh - 162px) !important;
+      position: absolute !important;
+      top: 162px;
+  }
+
+ }

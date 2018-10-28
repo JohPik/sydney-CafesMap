@@ -86,30 +86,35 @@ class MyMap extends Component {
             value={this.state.query}
             onChange={(e) => this.updateQuery(e.target.value)}
               />
-            {/*<p>We found <span className="cafes-numbers">{this.props.allCafes.length}</span> matching you search</p>*/}
+            <i className="fas fa-search" aria-hidden="true"></i>
+            <p className="cafes-numbers">We found <span>{showMarker.length}</span> cafés</p>
 
-          <div className="search-result">
+
             { showMarker.length > 0 ?
-
-              <ul className="search-list">
-                {showMarker.map(cafe =>
-                  <li key={cafe.id}>
-                    <a className="cafe-name" onClick={() =>  this.openInfoWindow(cafe.id)}>{cafe.name}</a>
-                    <p className="cafe-address">{cafe.address}, {cafe.postalCode}, {cafe.state},<br/> {cafe.city}, {cafe.country}</p>
-                </li>
-                )}
-              </ul>
-
+            <div className="search-result">
+                <ul className="search-list">
+                  {showMarker.map(cafe =>
+                    <li key={cafe.id}>
+                      <a className="cafe-name" onClick={() =>  this.openInfoWindow(cafe.id)}>{cafe.name}</a>
+                      <p className="cafe-address">{cafe.address}, {cafe.postalCode}, {cafe.state},<br/> {cafe.city}, {cafe.country}</p>
+                  </li>
+                  )}
+                </ul>
+              </div>
               :
 
               this.props.allCafes.length > 1 ?
-                <p className="no-match">Ooops, nothing matches your search, please look for another venue</p>
-                :
-                <p className="loading-cafes">Page is Loading Please Wait</p>
+                <div className="search-failed">
+                  <p className="no-match">Ooops, nothing matches your search, please look for another venue</p>
+                </div>
+                  :
+                <div className="search-loads">
+                  <p className="loading-cafes">Page is Loading Please Wait</p>
+                </div>
 
             }
 
-            </div>
+
 
         </div>
 

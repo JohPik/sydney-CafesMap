@@ -62,7 +62,8 @@ class App extends Component {
     return (
       <div className="main">
         <div className="heading">
-          <h1>Hello Cafés</h1>
+          <h1>Hello<i className="fas fa-coffee"></i>Cafés</h1>
+
         </div>
         <MyMap allCafes={this.state.allCafes} allMarkers={this.state.allMarkers}/>
       </div>
