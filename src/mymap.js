@@ -123,7 +123,7 @@ class MyMap extends Component {
         </div>
 
       {/* Renders the Map, the Markers, and the info Windows*/}
-      <Map aria-label="Cafes Reviews Map" role="application" tabindex="0"
+      <Map aria-label="Cafes Map" role="application" tabindex="1"
         className="map"
         google={this.props.google}
         onClick={this.onMapClicked}
@@ -136,6 +136,7 @@ class MyMap extends Component {
         {/* Renders the Markers, by maping though showMarker*/}
         {showMarker.map(cafe =>
           <Marker
+            aria-label="Cafes location" role="information" tabindex="1"
             ref={this.onMarkerMounted}
             animation={this.props.google.maps.Animation.DROP}
             key={cafe.id} id={cafe.id} name={cafe.name} position={cafe.location}
