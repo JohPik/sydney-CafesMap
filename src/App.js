@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './App.css'
 import MyMap from './mymap'
 import Home from './home'
+import { Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 
 class App extends Component {
@@ -59,14 +61,26 @@ class App extends Component {
     this.setState({ allMarkers })
   }
 
+
+
   render() {
     return (
       <div className="main">
-        <div className="heading">
-          <h1 tabindex="1" role="heading" >Hello<i className="fas fa-coffee"></i>Cafés</h1>
-        </div>
-        <Home/>
-        <MyMap aria-label="Sydney Cafes App Main Content" role="application" allCafes={this.state.allCafes} allMarkers={this.state.allMarkers}/>
+        <Route exact path="/" component={Home}
+        />
+
+      <Route exact path="/map" render={() => (
+          <div className="map-screen">
+            <div className="heading">
+              <Link to="/home" className="home">
+                <i class="fas fa-arrow-circle-left"></i>
+              </Link>
+              <h1 tabindex="1" role="heading">Hello<i className="fas fa-coffee"></i>Cafés</h1>
+            </div>
+            <MyMap aria-label="Sydney Cafes App Main Content" role="application" allCafes={this.state.allCafes} allMarkers={this.state.allMarkers}/>
+          </div>
+          )}
+        />
       </div>
     )
   }

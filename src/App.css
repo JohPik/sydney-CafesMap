@@ -200,3 +200,9 @@ html, body, .main {
   }
 
  }
+
+ a.home {
+    position: absolute;
+    left: 20px;
+    color: #66FF66;
+}
