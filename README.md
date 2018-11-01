@@ -1,6 +1,6 @@
 # Sydney Cafés Neighborhood Map (React)
 
-This web app is the final project of Udacity's Front-end Nanodegree. The main goal was to develop a single page application featuring a map of a neighborhood featyring functionality including highlighted locations, third-party data about those locations and various ways to browse the content.
+This web app is the final project of Udacity's Front-end Nanodegree. The main goal was to develop a single page application featuring a map of a neighborhood featuring functionality including highlighted locations, third-party data about those locations and various ways to browse the content.
 
 ## Before Starting
 
@@ -11,7 +11,7 @@ This web app is the final project of Udacity's Front-end Nanodegree. The main go
 
 ### Prerequisites
 
-1. You will need to dowload all the dependencies and have npm installed
+1. You will need to dowlnoad all the dependencies and have npm installed
 2. You will need a modern browser with CSS and Javascript enabled.
 
 ## Built With
@@ -24,7 +24,7 @@ This web app is the final project of Udacity's Front-end Nanodegree. The main go
 
 ## Authors
 
-**Johan Piquet** 
+**Johan Piquet**
 
 ## Acknowledgments
 
