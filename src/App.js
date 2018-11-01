@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import MyMap from './mymap'
+import Home from './home'
 
 
 class App extends Component {
@@ -64,6 +65,7 @@ class App extends Component {
         <div className="heading">
           <h1 tabindex="1" role="heading" >Hello<i className="fas fa-coffee"></i>Cafés</h1>
         </div>
+        <Home/>
         <MyMap aria-label="Sydney Cafes App Main Content" role="application" allCafes={this.state.allCafes} allMarkers={this.state.allMarkers}/>
       </div>
     )
