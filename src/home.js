@@ -2,28 +2,18 @@ import React, { Component } from 'react'
 
 
 class Home extends Component {
-  state = {
-    query: "" //query of the Search
-  }
-
-  // When Input Changes the query changes too
-   updateQuery(query){
-     this.setState({query: query.trim()})
-   }
-
 
   render(){
+    console.log("props", this.props);
     return (
       <div>
       <p>Where are you?</p>
       <input
-        type="text" aria-label="Enter your location"
-        aria-label="Your location" role="heading" tabindex="0"
+        type="text" aria-label="Enter your location" role="heading" tabIndex="0"
         className="search-café"
-        type="text"
         placeholder="Enter your location"
-        value={this.state.query}
-        onChange={(e) => this.updateQuery(e.target.value)}
+        value={ this.props.query}
+        onChange={(e) => this.props.updateQuery(e.target.value)}
           />
       </div>
 

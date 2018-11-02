@@ -81,9 +81,8 @@ class MyMap extends Component {
         <div className="search">
           <input
             type="text" aria-label="Search your Café"
-            aria-label="Cafes Filtering" role="heading" tabindex="0"
+            role="heading" tabindex="0"
             className="search-cafes"
-            type="text"
             placeholder="Search your Café"
             value={this.state.query}
             onChange={(e) => this.updateQuery(e.target.value)}

@@ -9,9 +9,15 @@ import { Route } from 'react-router-dom'
 class App extends Component {
 
   state = {
+    query: "",
     allCafes: [], //Store the Raw Data coming from fourSquare
     allMarkers: [] //Store the Markers Data
   }
+
+  // When Input Changes the query changes too
+   updateQuery = (query) => {
+     this.setState({query: query.trim()})
+   }
 
   // Call fourSquare API to get the raw data about my cafes
   componentDidMount(){
@@ -66,8 +72,10 @@ class App extends Component {
   render() {
     return (
       <div className="main">
-        <Route exact path="/" component={Home}
-        />
+        <Route exact path="/"  render={() => (
+            <Home query={this.state.query} updateQuery={this.updateQuery}/>
+            )}
+          />
 
       <Route exact path="/map" render={() => (
           <div className="map-screen">
