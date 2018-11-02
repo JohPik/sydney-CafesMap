@@ -27,7 +27,7 @@ class Search extends Component {
         <input
           className="search-contacts"
           type="text"
-          placeholder="Search your Cinema"
+          placeholder="Search your Cafés"
           value={this.state.query}
           onChange={(e) => this.updateQuery(e.target.value)}
             />

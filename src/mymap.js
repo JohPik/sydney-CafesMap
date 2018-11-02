@@ -82,7 +82,7 @@ class MyMap extends Component {
           <input
             type="text" aria-label="Search your Café"
             aria-label="Cafes Filtering" role="heading" tabindex="0"
-            className="search-cinemas"
+            className="search-cafes"
             type="text"
             placeholder="Search your Café"
             value={this.state.query}

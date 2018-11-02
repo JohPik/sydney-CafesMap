@@ -72,7 +72,7 @@ class App extends Component {
       <Route exact path="/map" render={() => (
           <div className="map-screen">
             <div className="heading">
-              <Link to="/home" className="home">
+              <Link to="/" className="home">
                 <i class="fas fa-arrow-circle-left"></i>
               </Link>
               <h1 tabindex="1" role="heading">Hello<i className="fas fa-coffee"></i>Cafés</h1>
