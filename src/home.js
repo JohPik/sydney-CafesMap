@@ -15,8 +15,17 @@ class Home extends Component {
 
   activatePlaceSearch() {
     let input = document.querySelector(".search-café")
-    let autoComplete = new window.google.maps.places.Autocomplete(input)
-    console.log("it is happening");
+    let autocomplete = new window.google.maps.places.Autocomplete(input)
+    autocomplete.addListener('place_changed', function() {
+          var place = autocomplete.getPlace()
+
+          let lat = place.geometry.location.lat()
+          let lng = place.geometry.location.lng()
+
+          console.log("lat", lat)
+          console.log("lng", lng)
+          console.log("place", place)
+        })
   }
 
 
