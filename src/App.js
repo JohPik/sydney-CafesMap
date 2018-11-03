@@ -11,9 +11,28 @@ class App extends Component {
   state = {
     query: "",
     allCafes: [], //Store the Raw Data coming from fourSquare
-    allMarkers: [] //Store the Markers Data
+    allMarkers: [], //Store the Markers Data
+    mapCenter: {
+      lat: "",
+      lng: ""
+    }
   }
 
+  //Update mapCenter
+  mapCenterUpdate = (ltd, lgt) => {
+    let updatedMapCenter = {
+      lat: ltd,
+      lng: lgt
+    }
+    this.setState({
+      mapCenter: updatedMapCenter
+    })
+    console.log("the map center", this.state.mapCenter);
+  }
+
+  logSomething(){
+    console.log("it wors");
+  }
   // When Input in Home Page Changes the query changes too
    updateQuery = (query) => {
      this.setState({query: query.trim()})
@@ -73,7 +92,7 @@ class App extends Component {
     return (
       <div className="main">
         <Route exact path="/"  render={() => (
-            <Home query={this.state.query} updateQuery={this.updateQuery}/>
+            <Home query={this.state.query} updateQuery={this.updateQuery} mapCenterUpdate={this.mapCenterUpdate} logSomething={this.logSomething}/>
             )}
           />
 

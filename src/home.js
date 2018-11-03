@@ -8,29 +8,30 @@ class Home extends Component {
     this.renderSearch()
   }
 
+  // render Autocomplete Search
   renderSearch = () => {
     loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyDS0pzpMW_qNo6xMb8d0I69zukaOsC0Lx0&libraries=places&callback=activatePlaceSearch")
     window.activatePlaceSearch = this.activatePlaceSearch
   }
 
-  activatePlaceSearch() {
+  // Use Autocomplete to generate nex map center
+  activatePlaceSearch = () => {
     let input = document.querySelector(".search-café")
     let autocomplete = new window.google.maps.places.Autocomplete(input)
-    autocomplete.addListener('place_changed', function() {
+    autocomplete.addListener('place_changed', () => {
           var place = autocomplete.getPlace()
 
           let lat = place.geometry.location.lat()
           let lng = place.geometry.location.lng()
 
-          console.log("lat", lat)
-          console.log("lng", lng)
-          console.log("place", place)
+          this.props.mapCenterUpdate(lat, lng)
+
         })
   }
 
 
   render(){
-    // console.log("props", this.props);
+     console.log("props", this.props);
     return (
       <div>
       <p>Where are you?</p>
