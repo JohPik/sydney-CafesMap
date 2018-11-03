@@ -14,7 +14,7 @@ class App extends Component {
     allMarkers: [] //Store the Markers Data
   }
 
-  // When Input Changes the query changes too
+  // When Input in Home Page Changes the query changes too
    updateQuery = (query) => {
      this.setState({query: query.trim()})
    }
@@ -81,9 +81,9 @@ class App extends Component {
           <div className="map-screen">
             <div className="heading">
               <Link to="/" className="home">
-                <i class="fas fa-arrow-circle-left"></i>
+                <i className="fas fa-arrow-circle-left"></i>
               </Link>
-              <h1 tabindex="1" role="heading">Hello<i className="fas fa-coffee"></i>Cafés</h1>
+              <h1 tabIndex="1" role="heading">Hello<i className="fas fa-coffee"></i>Cafés</h1>
             </div>
             <MyMap aria-label="Sydney Cafes App Main Content" role="application" allCafes={this.state.allCafes} allMarkers={this.state.allMarkers}/>
           </div>

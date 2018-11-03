@@ -81,23 +81,23 @@ class MyMap extends Component {
         <div className="search">
           <input
             type="text" aria-label="Search your Café"
-            role="heading" tabindex="0"
+            role="heading" tabIndex="0"
             className="search-cafes"
             placeholder="Search your Café"
             value={this.state.query}
             onChange={(e) => this.updateQuery(e.target.value)}
               />
             <i className="fas fa-search" aria-hidden="true"></i>
-            <p role="status" aria-label="number of search result" tabindex="0" className="cafes-numbers">We found <span>{showMarker.length}</span> cafés</p>
+            <p role="status" aria-label="number of search result" tabIndex="0" className="cafes-numbers">We found <span>{showMarker.length}</span> cafés</p>
 
 
             { showMarker.length > 0 ?
             <div className="search-result">
-                <ul className="search-list" role="list" aria-label="Filtered Café List" tabindex="0">
+                <ul className="search-list" role="list" aria-label="Filtered Café List" tabIndex="0">
                   {showMarker.map(cafe =>
                     <li role="treeitem" aria-label={cafe.name} key={cafe.id}>
-                      <a role="link" aria-label={cafe.name} tabindex="0" className="cafe-name" onClick={() =>  this.openInfoWindow(cafe.id)}>{cafe.name}</a>
-                      <p className="cafe-address" role="document" aria-label="Restaurant Address" tabindex="0">
+                      <a role="link" aria-label={cafe.name} tabIndex="0" className="cafe-name" onClick={() =>  this.openInfoWindow(cafe.id)}>{cafe.name}</a>
+                      <p className="cafe-address" role="document" aria-label="Restaurant Address" tabIndex="0">
                         {cafe.address}, {cafe.postalCode}, {cafe.state},<br/> {cafe.city}, {cafe.country}
                       </p>
                   </li>
@@ -122,7 +122,7 @@ class MyMap extends Component {
         </div>
 
       {/* Renders the Map, the Markers, and the info Windows*/}
-      <Map aria-label="Cafes Map" role="application" tabindex="1"
+      <Map aria-label="Cafes Map" role="application" tabIndex="1"
         className="map"
         google={this.props.google}
         onClick={this.onMapClicked}
@@ -135,7 +135,7 @@ class MyMap extends Component {
         {/* Renders the Markers, by maping though showMarker*/}
         {showMarker.map(cafe =>
           <Marker
-            aria-label="Cafes location" role="information" tabindex="1"
+            aria-label="Cafes location" role="information" tabIndex="1"
             ref={this.onMarkerMounted}
             animation={this.props.google.maps.Animation.DROP}
             key={cafe.id} id={cafe.id} name={cafe.name} position={cafe.location}
