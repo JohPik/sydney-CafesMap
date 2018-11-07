@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import MyMap from './mymap'
 import Home from './home'
-import { Link } from 'react-router-dom'
+import HeaderMap from './headerMap'
 import { Route } from 'react-router-dom'
 
 
@@ -98,12 +98,7 @@ class App extends Component {
 
       <Route exact path="/map" render={() => (
           <div className="map-screen">
-            <div className="heading">
-              <Link to="/" className="home">
-                <i className="fas fa-arrow-circle-left"></i>
-              </Link>
-              <h1 tabIndex="1" role="heading">Hello<i className="fas fa-coffee"></i>Cafés</h1>
-            </div>
+            <HeaderMap/>
             <MyMap aria-label="Sydney Cafes App Main Content" role="application" allCafes={this.state.allCafes} allMarkers={this.state.allMarkers}/>
           </div>
           )}
