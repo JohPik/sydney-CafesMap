@@ -33,7 +33,7 @@ class Home extends Component {
   render(){
      console.log("props", this.props);
     return (
-      <div>
+      <div className="home-main">
       <p>Where are you?</p>
       <input
         type="text" aria-label="Enter your location" role="heading" tabIndex="0"

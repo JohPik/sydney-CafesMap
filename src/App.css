@@ -40,6 +40,14 @@ html, body, .main {
   padding: 0;
 }
 
+.home-main {
+    background-image: url("./images/Coffee-Background-Picture.jpg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+    height: 100vh;
+}
+
 /* Heading */
 
 .heading {
