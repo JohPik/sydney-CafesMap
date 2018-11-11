@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import MyMap from './mymap'
+import MyNewMap from './mynewmap'
 import Home from './home'
 import HeaderMap from './headerMap'
 import { Route } from 'react-router-dom'
@@ -99,7 +99,7 @@ class App extends Component {
       <Route exact path="/map" render={() => (
           <div className="map-screen">
             <HeaderMap/>
-            <MyMap aria-label="Sydney Cafes App Main Content" role="application" allCafes={this.state.allCafes} allMarkers={this.state.allMarkers}/>
+            <MyNewMap aria-label="Sydney Cafes App Main Content" role="application" allCafes={this.state.allCafes} allMarkers={this.state.allMarkers}/>
           </div>
           )}
         />
